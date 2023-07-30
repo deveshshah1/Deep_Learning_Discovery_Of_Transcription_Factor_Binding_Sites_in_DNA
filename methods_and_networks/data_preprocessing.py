@@ -49,7 +49,7 @@ def dataset_exploration(sequences, labels):
     print('DNA Sequence #1: ', sequences[0])
     print('Protein Bound to Sequence #1: ', True if labels[0]=="1" else False)
 
-    print("-----------------------Dataset Statistics-----------------------")
+    print("----------------------Dataset Statistics----------------------")
     print("Length of each sequence: ", len(sequences[0]))
     print("Total Number of sequences: ", len(sequences))
     labels_temp = [1 if labels[i]=='1' else 0 for i in range(len(labels))]
@@ -96,7 +96,7 @@ def convert_to_torch_dataloader(features, labels, batch_size=32, num_workers=4):
     """
     Converts our input features and labels to the correct format and generates a torch DataLoader for using the data.
     :param features: input features of size (num_items, num_encodings=4, len_sequence=50)
-    :param labels: target labels of size (num_items, num_output_labels=2)
+    :param labels: target labels of size (num_items, num_outputs=2)
     :param batch_size: batch size for our dataloader
     :param num_workers: num workers for our dataloader
     :return: a torch DataLoader object that includes our features and labels

@@ -7,12 +7,29 @@ for reference. The key idea is to study the impact of different network types. W
 the best design for each model type.
 
 The implemented model types include:
-    - Convolutional Network (TODO: CHANGE TO SIGMOID)
+    - Convolutional Network
     - Multilayer Perceptron
 """
 
 import torch.nn as nn
 import torch.nn.functional as F
+
+
+class NetworkFactory:
+    """
+    The NetworkFactory loads in various types of predefined models from the models.py file.
+    This can be customized to generate various options of models using different parameters
+    """
+    @staticmethod
+    def get_network(name):
+        if name == "CNN_1_layer":
+            return ConvNetwork(num_conv_layers=1)
+        elif name == "CNN_2_layer":
+            return ConvNetwork(num_conv_layers=2)
+        elif name == "MLP":
+            return MultiLayerPerceptron()
+        else:
+            raise Exception("Invalid Network Name")
 
 
 class ConvNetwork(nn.Module):
@@ -60,4 +77,23 @@ class ConvNetwork(nn.Module):
         x = x.reshape(-1, self.lin_len)
         x = F.relu(self.fc1(x))
         x = F.softmax(self.out(x))
+        return x
+
+
+class MultiLayerPerceptron(nn.Module):
+    """
+    This is a standard MLP layer that flattens our input vector and puts it through
+    three linear layers with ReLU activations.
+    """
+    def __init__(self):
+        super().__init__()
+        self.fc1 = nn.Linear(in_features=(50*4), out_features=256)
+        self.fc2 = nn.Linear(in_features=256, out_features=64)
+        self.fc3 = nn.Linear(in_features=64, out_features=2)
+
+    def forward(self, x):
+        x = x.reshape(-1, (50*4))
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = F.softmax(self.fc3(x))
         return x
