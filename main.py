@@ -13,9 +13,9 @@ aim to explore the specific impact of model architecture on this task.
 
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
-from data_preprocessing import *
-from models import *
-from plotting import *
+from methods_and_networks.data_preprocessing import *
+from methods_and_networks.models import *
+from methods_and_networks.plotting import *
 
 
 def main():
