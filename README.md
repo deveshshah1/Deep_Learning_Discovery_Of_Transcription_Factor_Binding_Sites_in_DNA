@@ -1,4 +1,4 @@
-# Deep Learning Discovery Of Transcription Factor Binding Sites in DNA using Genomics Data
+# Deep Learning Discovery Of Transcription Factor Binding Sites in DNA using Genomics Data 
 The study of omics datasets using machine learning has revolutionized the potential for scientific discovery.
 In this work, we consider various deep learning models to help identify the binding motifs in DNA based
 on the results of an assay that determines whether a longer DNA sequence binds to the protein or not.
